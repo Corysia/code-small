@@ -13,15 +13,6 @@ module.exports = {
     resolve: {
         extensions: [".tsx", ".ts", ".js"], //extensions that webpack will look for
     },
-    devServer: {
-        host: "localhost", //allows us to access the server from other devices on the network
-        port: 8080, //port that we're using for local host (localhost:8080)
-        static: path.resolve(appDirectory, "public"), //tells webpack to serve from the public folder
-        hot: true, //allows us to update the page without refreshing
-        devMiddleware: {
-            publicPath: "/", //tells webpack to serve from the root directory
-        }
-    },
     module: {
         rules: [
             {
@@ -30,7 +21,7 @@ module.exports = {
                 exclude: /node_modules/, //tells webpack to ignore node_modules
             },
             {
-                test: /\.(jpg)$/i,
+                test: /\.(gif|png|jpe?g)$/i,
                 type: 'asset/resource',
             }
         ],
@@ -38,11 +29,11 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             inject: true, //injects the js file into the html file
-            template: path.resolve(appDirectory, "public/index.html"), //path to the html file
+            template: path.resolve(appDirectory, "src/index.html"), //path to the html file
         }),        
         new CopyPlugin({
             patterns: [
-                { from: "public/textures", to: "textures" },
+                { from: "resources", noErrorOnMissing: true },
             ],
         }),
     ],
