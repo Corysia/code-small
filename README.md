@@ -36,5 +36,5 @@ npm run build
 or
 
 ```bash
-npm run dev
+npm run serve
 ```
